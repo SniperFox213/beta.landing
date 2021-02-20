@@ -1,4 +1,7 @@
 <script>
+  // Importing components
+  import { Icon } from "../components";
+
   // Importing configs
   import pages from "../config/landing/pages.json";
 </script>
@@ -48,6 +51,16 @@
             </div>
           </div>
         { /each }
+
+        <div class="w-1/3 p-1 relative">
+          <div style="padding-top: 100%;" class="w-full relative">
+            <div class="absolute inset-0 w-full h-full rounded-md border-2 border-gray-300 border-dotted shadow-md flex flex-col justify-center items-center">
+              <Icon name="more-horizontal" attrs={{ class: "w-6 h-6 text-white" }} />
+              
+              <h1 class="text-md text-white font-medium mt-2">Ще буде</h1>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

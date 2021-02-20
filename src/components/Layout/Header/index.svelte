@@ -105,7 +105,9 @@
 			<div class="mt-4 w-full relative flex flex-wrap">
 
 				{ #each pages.filter((x) => !x.wip) as page }
-					<div class="w-1/3 flex items-center px-4 py-2 relative">
+					<div on:click={(e) => {
+						window.location.href = page.href;
+					}} class="w-1/3 flex items-center px-4 py-2 relative">
 						<div
 							class="w-12 h-12 rounded-md flex justify-center items-center opacity-70"
 							style="{ page.icon.background }"
