@@ -5,7 +5,7 @@
 
 	// Importing components
 	import { Header } from "../components/layout";
-	import { Spinner } from "@beta/components/basic";
+	import { Spinner } from "@atbeta/components/basic";
 
 	// Importing stores
 	import profile from "../stores/profile.js";

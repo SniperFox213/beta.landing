@@ -19,7 +19,7 @@
   // Importing components
   import { 
     Spinner
-  } from "@beta/components/basic";
+  } from "@atbeta/components/basic";
 </script>
 
 <main style="z-index: 999;" class="fixed bg-white inset-0 w-full h-screen flex justify-center items-center">

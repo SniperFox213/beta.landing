@@ -2,8 +2,8 @@
 	// Importing components
 	import Message from "./components/Message.header.svelte";
 
-  import { Logotype } from "@beta/components/brand";
-  import { Icon } from "@beta/components/basic";
+  import { Logotype } from "@atbeta/components/brand";
+  import { Icon } from "@atbeta/components/basic";
 
 	// Importing config files
 	import { pages } from "../../../config/landing";
