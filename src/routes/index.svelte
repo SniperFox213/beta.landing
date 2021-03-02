@@ -1,9 +1,9 @@
 <script>
   // Importing components
-  import { Icon } from "../components";
+  import { Icon } from "../components/basic";
 
   // Importing configs
-  import pages from "../config/landing/pages.json";
+  import { pages } from "../config/landing";
 </script>
 
 <!-- Landing -->

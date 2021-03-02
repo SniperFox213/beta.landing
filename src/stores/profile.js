@@ -1,91 +1,62 @@
+// Importing modules
 import { writable } from "svelte/store";
 
-import storage from "local-storage";
-import axios from "axios";
+import Cookie from "cookie-universal";
+const cookies = Cookie();
 
-import config from "../config/api/default.json";
+// Importing actions
+import { loadProfile, createProfile } from "../actions/profile";
+import moment from "moment";
 
-function store() {
-  // Default Profile Object
-  let profile = {
-    id: null,
-  };
+// Store itself
+const store = () => {
+  // Getting some required methods
+  const { subscribe, update } = writable({});
 
-  // Let's now "import" some important
-  const { subscribe, update } = writable(profile);
-
+  // And now let's build and return this store
   return {
     subscribe,
 
-    // Function, that'll load our user information
-    loadProfile: (token, attributes = {}) => {
-      const attrs = {
-        ignoreSavedPincode: attributes.ignoreSavedPincode || false
-      };
-
-      // Let's now check if it's a
-      // token or no.
-      if (token.split('').length != 16) {
-        return;
-      };
-
+    // Function to initialize our profile
+    initialize: () => {
       return new Promise((resolve, reject) => {
-        // Let's now try to connect to authed
-        // servers and try to get some information
-        // about this token.
-        axios.get(`${config.apiURI.internal}/profile/${token}`)
-        .then((response) => {
-          const data = response.data;
-          const done = () => {
-            update((store) => {
-              // Update Profile
-              store       = data;
-              store.token = token;
-  
-              setTimeout(() => {
-                resolve(store);
-              }, 10);
-              return store;
+        // Let's firstly get our profile token
+        // from our cookie storage
+        const token = cookies.get('token');
+
+        if (token == null) {
+          // Creating new account
+          createProfile()
+          .then((response) => {
+            // And now let's update our store with
+            // user information
+            update(() => {
+              resolve(response);
+              return response;
             });
-          };
 
-          // Second Token Check
-          if (!data.isToken) {
-            reject({ error: "!IsToken" });
-          };
-
-          // Let's check if this account
-          // have pincode authorization
-          if (data.security.pincode != null) {
-            // Let's check if we have AuthorizedToken saved
-            // somewhere in our local-storage
-            let authorizedToken = attrs.ignoreSavedPincode ? null : storage.get(`AT-${data.id}`);
-
-            // And now let's check validity of this token
-            // through internal api
-            axios.get(`${config.apiURI.internal}/security/code/${authorizedToken}`)
-            .then((response) => {
-              done();
-            })
-            .catch(() => {
-              if (!attrs.ignoreSavedPincode) storage.remove(`AT-${authorizedToken}`);
-              
-              reject({ error: "authorizePincode", id: data.id });
+            // And let's save our token to
+            // our cookies
+            cookies.set("token", "$" + response.token._id, {
+              path: "/",
+              expires: moment().add('1', 'year').toDate()
             });
-          } else {
-            done();
-          };
-        }).catch((error) => {
-          reject(error);
-        });
-      });
-    },
-
-    // Function, that'll force our user's profile
-    // data to the store.
-    forceProfile: (profile) => {
-      update(() => {
-        return profile;
+          }).catch(() => {
+            reject();
+          });
+        } else {
+          // Loading our account information
+          loadProfile(token)
+          .then((response) => {
+            // Updating our store
+            update(() => {
+              resolve(response);
+              return response;
+            });
+          }).catch(() => {
+            reject();
+          });
+        };
       });
     }
   }

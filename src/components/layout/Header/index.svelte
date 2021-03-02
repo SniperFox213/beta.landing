@@ -1,26 +1,29 @@
 <script>
 	// Importing components
-	
+	import Message from "./components/Message.header.svelte";
+
+  import { Logotype } from "../../brand";
+  import { Icon } from "../../basic";
+
 	// Importing config files
-	import pages from "../../../config/landing/pages.json";
+	import { pages } from "../../../config/landing";
+
+  // Importing stores
+  import profile from "../../../stores/profile.js";
 
   // Variables
   let dropdownOpened = false;
 </script>
 
+<!-- Current service message -->
+<Message />
+
 <!-- Header -->
-<header
-  style="z-index: 3;"
-  class="mt-6 fixed w-full h-14 flex items-center justify-between px-8 bg-white"
->
+<header style="z-index: 3;" class="mt-6 fixed w-full h-14 flex items-center justify-between px-8 bg-white">
   <!-- Logotype -->
   <div class="flex items-center w-1/4">
     <!-- Beta Logotype -->
-    <div
-      class="bg-indigo-400 text-white font-bold w-9 h-9 rounded-md shadow-md flex items-center justify-center text-md"
-    >
-      Bё
-    </div>
+    <Logotype />
 
     <!-- Text -->
     <h1 class="text-gray-800 ml-2 text-xl font-bold">Bёta</h1>
@@ -44,18 +47,7 @@
       <span class="text-xs">Сервіси</span>
 
       <!-- Icon -->
-      <svg
-        class="ml-0.5 w-3 h-3 mt-0.5"
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg
-      >
+      <Icon name="chevron-down" attrs={{ class: "ml-0.5 w-3 h-3 mt-0.5" }} />
     </button>
 
     <!-- About -->
@@ -76,9 +68,7 @@
 
   <!-- User Account -->
   <div class="flex justify-end items-center w-1/4">
-    <button
-      class="px-6 h-9 rounded-md bg-gradient-to-r from-indigo-400 to-blue-500 text-white"
-    >
+    <button class="px-6 h-9 rounded-md bg-gradient-to-r from-indigo-400 to-blue-500 text-white">
       Авторізуватися
     </button>
   </div>
@@ -137,66 +127,6 @@
 						</p>
 					</div>
 				</div>
-<!-- 
-				<div class="w-1/3 flex items-center px-4 py-2 relative">
-					<div
-						class="w-12 h-12 rounded-md flex justify-center items-center opacity-70"
-						style="background-image: linear-gradient(to right top, rgb(161, 140, 209) 0%, rgb(251, 194, 235) 100%);"
-					>
-						<img class="w-2/3" src="./icons/books.png" alt="" />
-					</div>
-					<div class="pl-3 w-2/3">
-						<h2 class="text-xl text-gray-800 font-medium">
-							<span class="font-bold">Bё</span> Library
-						</h2>
-						<p class="text-xs text-gray-700 opacity-70">
-							Все, що тільки існує по Математиці та іншим наукам
-						</p>
-					</div>
-				</div>
-				<div class="w-1/3 flex items-center px-4 py-2 relative">
-					<div
-						class="w-12 h-12 rounded-md flex justify-center items-center opacity-70"
-						style="background-image: linear-gradient(to right top, rgb(251, 194, 235) 0%, rgb(166, 193, 238) 100%);"
-					>
-						<img class="w-2/3" src="./icons/school.png" alt="" />
-					</div>
-					<div class="pl-3 w-2/3">
-						<h2 class="text-xl text-gray-800 font-medium">
-							<span class="font-bold">Bё</span> Learning
-						</h2>
-						<p class="text-xs text-gray-700 opacity-70">
-							Все, що тільки існує по Математиці та іншим наукам
-						</p>
-					</div>
-				</div>
-				<div class="w-1/3 flex items-center px-4 py-2 relative">
-					<div
-						class="w-12 h-12 rounded-md flex justify-center items-center opacity-70"
-						style="background-image: linear-gradient(120deg, rgb(161, 196, 253) 0%, rgb(194, 233, 251) 100%);"
-					>
-						<img class="w-2/3" src="./icons/teacher.png" alt="" />
-					</div>
-					<div class="pl-3 w-2/3">
-						<h2 class="text-xl text-gray-800 font-medium">
-							<span class="font-bold">Bё</span> Teachers
-						</h2>
-						<p class="text-xs text-gray-700 opacity-70">
-							Все, що тільки існує по Математиці та іншим наукам
-						</p>
-					</div>
-				</div>
-				<div class="w-1/3 flex items-center px-4 py-2 relative">
-					<div
-						class="w-12 h-12 rounded-md border-2 border-dotted border-gray-300"
-					/>
-					<div class="ml-3">
-						<h2 class="text-xl text-gray-800 font-medium">Більше сервісів</h2>
-						<p class="text-xs text-gray-700 opacity-70">
-							Більше корисних сервісів для навчання
-						</p>
-					</div>
-				</div> -->
 			</div>
 		</div>
 	</div>
