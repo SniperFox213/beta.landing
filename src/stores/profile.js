@@ -39,7 +39,8 @@ const store = () => {
             // our cookies
             cookies.set("token", "$" + response.token._id, {
               path: "/",
-              expires: moment().add('1', 'year').toDate()
+              expires: moment().add('1', 'year').toDate(),
+              domain: ".atbeta.ml"
             });
           }).catch(() => {
             reject();
