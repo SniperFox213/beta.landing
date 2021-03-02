@@ -1,6 +1,6 @@
 <script>
   // Importing components
-  import { Icon } from "@beta/components/basic";
+  import { Icon } from "@atbeta/components/basic";
 
   // Importing configs
   import { pages } from "../config/landing";
