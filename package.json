@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@atbeta/components": "^1.0.0",
+    "@editorjs/editorjs": "^2.19.1",
     "@rollup/plugin-json": "^4.1.0",
     "apicache": "^1.5.3",
     "axios": "^0.21.1",
@@ -26,6 +27,7 @@
     "faunadb": "^4.0.0",
     "feather-icons": "^4.28.0",
     "hasha": "^5.2.2",
+    "katex": "^0.12.0",
     "local-storage": "^2.0.0",
     "moment": "^2.29.1",
     "sirv": "^1.0.10",

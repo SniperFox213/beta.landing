@@ -1,6 +1,6 @@
 <script>
 	// Importing components
-	import Message from "./components/Message.header.svelte";
+	// import Message from "./components/Message.header.svelte";
 
   import { Logotype } from "@atbeta/components/brand";
   import { Icon } from "@atbeta/components/basic";
@@ -16,10 +16,10 @@
 </script>
 
 <!-- Current service message -->
-<Message />
+<!-- <Message /> -->
 
 <!-- Header -->
-<header style="z-index: 3;" class="mt-6 fixed w-full h-14 flex items-center justify-between px-8 bg-white">
+<header style="z-index: 3;" class="fixed w-full h-14 flex items-center justify-between px-8 bg-white">
   <!-- Logotype -->
   <div class="flex items-center w-1/4">
     <!-- Beta Logotype -->
