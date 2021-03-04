@@ -7,24 +7,25 @@
 	import { Header } from "../components/layout";
 	import { Spinner } from "@atbeta/components/basic";
 
-	// Importing stores
-	import profile from "../stores/profile.js";
+	// Importing actions
+	import storage from "../stores/storage.js";
+	import { initialize as initializeApplication } from "../actions/application";
 
 	// onMount event
 	// - Here we'll load our
 	// application information
 	onMount(() => {
-		profile.initialize()
-		.then(() => {
-			loaded = true;
+		initializeApplication()
+		.catch(() => {
+			error = true;
 		});
 	});
 
-	// 
-	let loaded = false;
+	// Variables
+	let error  = null;
 </script>
 
-{ #if loaded }
+{ #if $storage["loaded"] && !error }
 	<Header />
 
 	<!-- Content -->
@@ -112,6 +113,30 @@
 { :else }
 	<!-- Loading screen  -->
 	<div out:fade class="w-full h-screen flex justify-center items-center bg-gray-100">
-		<Spinner size="25" />
+		{ #if error }
+			<div class="w-full md:w-1/3 md:bg-white md:rounded-lg flex flex-col justify-center items-center p-6">
+				<!-- Img -->
+				<img class="w-1/3" src="https://media.tenor.com/images/1bb3fa895bbe74e6b325a051cd836f1f/tenor.gif" alt="">
+
+				<!-- Text -->
+				<div class="my-4 text-center">
+					<h1 class="text-xl text-black font-medium">Оп ошибка</h1>
+					<p class="text-sm text-gray-900 opacity-80">Мы не ожидали, что тут когда-либо произойдёт ошибка. Но она произошла. Ошибка произошла с вашим аккаунтом, так что не факт что она решится простой перезагрузкой страницы.<br/><br/>Можете радоваться.</p>
+				</div>
+
+				<!-- Buttons -->
+				<div class="w-full flex items-center">
+					<button class="bg-black rounded-md px-4 py-2 w-1/2">
+						<p class="text-white">Помощь</p>
+					</button>
+
+					<button class="bg-black rounded-md ml-4 px-4 py-2 w-1/2">
+						<p class="text-white">На главную</p>
+					</button>
+				</div>
+			</div>
+		{ :else }
+				<Spinner size="25" />
+		{ /if }
 	</div>
 { /if }
